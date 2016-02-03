@@ -4,6 +4,9 @@ language: perl
 #   - "5.12"
 #   - "5.14"
 
+install:
+    - cpanm -v --installdeps --notest .
+
 script: "perl sonde-parser.pl --file=example.sounding"
 
 notifications:
