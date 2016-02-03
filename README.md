@@ -1,5 +1,5 @@
 # Cup-sonde Parser
-Data file parser for WINDSOND<sup>(TM)</sup> R1 "cup sonde".
+Data file parser for Sparv Embedded WINDSOND<sup>(TM)</sup> R1 "cup sonde".
 
 [![Build Status](https://travis-ci.org/adamabernathy/windsonde-parser.svg?branch=master)](https://travis-ci.org/adamabernathy/windsonde-parser)
 
@@ -8,7 +8,7 @@ Made with :heart: by Adam C. Abernathy (http://www.adamabernathy.com)
 
 
 ## Summary
-Parses observational data from WINDSOND sounding (granule) output and saves the data to a CSV file for use in other scientific applications.
+Parses observational data from Sparv Embedded WINDSOND sounding (granule) output and saves the data to a CSV file for use in other scientific applications.
 
 
 ## Usage
@@ -36,13 +36,13 @@ The script will produce an output file based on the starting time of the granule
 | DAT-PRES      | Profile pressure              | Pascals           |
 
 
-## TODO
-  - [ ] Add pressure corrections from elevation
-  - [ ] Add direction/bearing support?
-  - [ ] Add dew point calculation?
+**Important**
+  - For `geo_lat` and `geo_lon` an multiplier of 1e-6 needs to be applied.
 
+## Version History
+See change log for details.
 
-# Legalese
+## Legalese
 I am in no way affiliated with Sparv Embedded AB. This software is licensed under the Apache 2.0 license.
 
 Copyright 2016 Adam C. Abernathy, (adamabernathy@gmail.com)

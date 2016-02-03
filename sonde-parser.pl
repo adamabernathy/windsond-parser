@@ -32,12 +32,6 @@ use Getopt::Long qw(GetOptions);
 #******************************************************************************#
 
 
-##
-# TODO: Add pressure corrections from elevation
-# TODO: Add direction/bearing support?
-# TODO: Add dew point calculation?
-#
-
 #******************************************************************************#
 #
 #                       DECLARATIONS AND DEFINITIONS
