@@ -8,12 +8,14 @@ Made with :heart: by Adam C. Abernathy (http://www.adamabernathy.com)
 ## Summary
 Parses observational data from WINDSOND sounding (granule) output and saves the data to a CSV file for use in other scientific applications.
 
+
 ## Usage
     perl sonde-parser.pl
         --file=<granule name>
         --alt=<inital altitude in meters>
 
 If `alt` is not declared the default value is used.  This is set internally.
+
 
 ## Script output
 The script will produce an output file based on the starting time of the granule.  The table layout is as follows:
@@ -36,6 +38,7 @@ The script will produce an output file based on the starting time of the granule
   - [ ] Add pressure corrections from elevation
   - [ ] Add direction/bearing support?
   - [ ] Add dew point calculation?
+
 
 # Legalese
 I am in no way affiliated with Sparv Embedded AB. This software is licensed under the Apache 2.0 license.
