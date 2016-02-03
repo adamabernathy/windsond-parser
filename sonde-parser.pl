@@ -47,9 +47,9 @@ use Getopt::Long qw(GetOptions);
 #  ----                 ---------------------------------------------
 my $i           = 0;    # Counter
 my $line        = '';   # Line-by-line read-in from source file
-my $junk        = '';   # Resuable working variable
+my $junk        = '';   # Reusable working variable
 my $AFU         = 0;    # Escape flag, Integer, 0=NO, 1=YES
-my $FIRST_TIME  = 1;    # Fist itteration flag, Integer, 0=NO, 1=YES
+my $FIRST_TIME  = 1;    # Fist iteration flag, Integer, 0=NO, 1=YES
 my $print_ver   = 0;    # Print version flag
 
 #  -- I/O --
@@ -60,7 +60,7 @@ my $output_file = '';   # Processed output file
 
 #  -- DATA FIELDS (TOKENS & RETRIEVED VALUES) --
 my $token       = '';   # Parsed token, reusable
-my $slice       = '';   # Token slice,  resuable
+my $slice       = '';   # Token slice,  reusable
 my $value       = 0;    # Token value,  reusable
 my @arr         = 0;    # Token container, ARRAY: 1xn
 my $nline       = 1;    # Line number of valid date from raw file, recorded
@@ -72,11 +72,11 @@ my $sec         = 0;    # Profile timestamp second
 my $decs        = 0;    # Profile timestamp fractional second
 #  Profile values
 my $sys_volt    = 0;    # Profile battery voltage,    units: Volts
-my $sys_nsat    = 0;    # Profile No. of Sattelites,  units: none
-my $geo_lat     = 0;    # Profile geodetic lattiude,  units: Degrees North
+my $sys_nsat    = 0;    # Profile No. of Satellites,  units: none
+my $geo_lat     = 0;    # Profile geodetic latitude,  units: Degrees North
 my $geo_lon     = 0;    # Profile geodetic longitude, units: Degrees East
 my $geo_elev    = 0;    # Profile geodetic elevation, units: Meters
-my $dat_tmpc    = 0;    # Profile temperature,        units: Celcius
+my $dat_tmpc    = 0;    # Profile temperature,        units: Celsius
 my $dat_relh    = 0;    # Profile relative humidity,  units: Percent
 my $dat_pres    = 0;    # Profile pressure,           units: Pascals
 #
@@ -129,7 +129,7 @@ if( open(F1, "$source_file") ) {
     while( $line = <F1> ) {
         chomp($line);
 
-        #print "$line\n";       # For diagostic purposes
+        #print "$line\n";       # For diagnostic purposes
 
         # The first two lines of the raw data file contain the initialization
         # time of the flight. The first line contains the local time, whereas
@@ -211,7 +211,7 @@ if( open(F1, "$source_file") ) {
             ##
             # At this point all the data has been parsed and ready for first
             # pass validation.  For the first pass we will just make sure that
-            # all the tokens we need are avaiable.  We will deal with
+            # all the tokens we need are available.  We will deal with
             # QA/QC later.
             #
             # Since the tokens and their values are not in a vector,
@@ -241,7 +241,7 @@ if( open(F1, "$source_file") ) {
 
             ##
             # Save to output file.  Initially we need to see if this is the
-            # first itteration of the program.  If so, we have enough
+            # first iteration of the program.  If so, we have enough
             # information now to generate the filename.  Once we do this, we
             # can store our Profile data to the CSV output file.
             #
@@ -264,7 +264,7 @@ if( open(F1, "$source_file") ) {
                     close(F2);
                 } else {
                     # Print data to file. This assumes we have a header
-                    # WARNING: This could be a sorce of file I/O failures.
+                    # WARNING: This could be a source of file I/O failures.
                     open (F2,">>$output_file");
                     printf F2 (
                         "%04d,%010d,%02d,%05.2f,%010d,%010d,%05d,".
