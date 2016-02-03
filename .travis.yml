@@ -4,9 +4,11 @@ perl:
   - "5.12"
   - "5.14"
 
+script: "perl -c sonde-parser.pl --file=example.sounding"
+
 notifications:
-recipients:
-  - adamabernathy@gmail.com
-email:
-  on_success: change
-  on_failure: always
+  recipients:
+    - adamabernathy@gmail.com
+  email:
+    on_success: change
+    on_failure: always
