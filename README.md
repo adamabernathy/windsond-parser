@@ -8,7 +8,7 @@ Made with :heart: by Adam C. Abernathy (http://www.adamabernathy.com)
 
 
 ## Summary
-Parses observational data from Sparv Embedded WINDSOND sounding (granule) output and saves the data to a CSV file for use in other scientific applications.
+Parses observational data from Sparv Embedded WINDSOND sounding (granule) output and saves the data to a CSV file for use in other scientific applications.  If you like this product and want to help expand it, feel free to make a Fork, Feature or Pull request.
 
 
 ## Usage
