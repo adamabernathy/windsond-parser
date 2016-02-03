@@ -1,0 +1,6 @@
+# Usual suspects
+.DS_Store
+Thubms.db
+
+# Output files
+*.csv
