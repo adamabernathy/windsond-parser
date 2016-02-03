@@ -1,6 +1,8 @@
 # Cup-sonde Parser
 Data file parser for WINDSOND<sup>(TM)</sup> R1 "cup sonde".
 
+[![Build Status](https://travis-ci.org/adamabernathy/windsonde-parser.svg?branch=master)](https://travis-ci.org/adamabernathy/windsonde-parser)
+
 ---
 Made with :heart: by Adam C. Abernathy (http://www.adamabernathy.com)
 
