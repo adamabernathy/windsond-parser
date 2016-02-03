@@ -1,10 +1,10 @@
 language: perl
-perl:
-  - "5.10"
-  - "5.12"
-  - "5.14"
+# perl:
+#   - "5.10"
+#   - "5.12"
+#   - "5.14"
 
-script: "perl -c sonde-parser.pl --file=example.sounding"
+script: "perl sonde-parser.pl --file=example.sounding"
 
 notifications:
   recipients:
