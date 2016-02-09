@@ -32,6 +32,12 @@ use Getopt::Long qw(GetOptions);
 #******************************************************************************#
 
 
+##
+# TODO: Add pressure corrections from elevation
+# TODO: Add direction/bearing support?
+# TODO: Add dew point calculation?
+#
+
 #******************************************************************************#
 #
 #                       DECLARATIONS AND DEFINITIONS
@@ -41,9 +47,9 @@ use Getopt::Long qw(GetOptions);
 #  ----                 ---------------------------------------------
 my $i           = 0;    # Counter
 my $line        = '';   # Line-by-line read-in from source file
-my $junk        = '';   # Reusable working variable
+my $junk        = '';   # Resuable working variable
 my $AFU         = 0;    # Escape flag, Integer, 0=NO, 1=YES
-my $FIRST_TIME  = 1;    # Fist iteration flag, Integer, 0=NO, 1=YES
+my $FIRST_TIME  = 1;    # Fist itteration flag, Integer, 0=NO, 1=YES
 my $print_ver   = 0;    # Print version flag
 
 #  -- I/O --
@@ -70,6 +76,8 @@ my $sys_nsat    = 0;    # Profile No. of Satellites,  units: none
 my $geo_lat     = 0;    # Profile geodetic latitude,  units: Degrees North
 my $geo_lon     = 0;    # Profile geodetic longitude, units: Degrees East
 my $geo_elev    = 0;    # Profile geodetic elevation, units: Meters
+my $geo_ang     = 0;    # Profile geodetic angle,     units: Degrees North
+my $dat_spd     = 0;    # Profile horizontal speed,   units: meters/sec
 my $dat_tmpc    = 0;    # Profile temperature,        units: Celsius
 my $dat_relh    = 0;    # Profile relative humidity,  units: Percent
 my $dat_pres    = 0;    # Profile pressure,           units: Pascals
@@ -192,7 +200,9 @@ if( open(F1, "$source_file") ) {
                     if ( $token eq 'lat' )  { $geo_lat  = $value; }
                     if ( $token eq 'lon' )  { $geo_lon  = $value; }
                     if ( $token eq 'alt' )  { $geo_elev = $value; }
+                    if ( $token eq 'ang' )  { $geo_ang  = $value; }
 
+                    if ( $token eq 'spd' )  { $dat_spd  = $value; }
                     if ( $token eq 'te' )   { $dat_tmpc = $value; }
                     if ( $token eq 'hu')    { $dat_relh = $value; }
                     if ( $token eq 'pa')    { $dat_pres = $value; }
@@ -220,7 +230,9 @@ if( open(F1, "$source_file") ) {
             if ($geo_lat  == -9999) { $AFU = 1;}
             if ($geo_lon  == -9999) { $AFU = 1;}
             if ($geo_elev == -9999) { $AFU = 1;}
+            if ($geo_ang  == -9999) { $AFU = 1;}
 
+            if ($dat_spd  == -9999) { $AFU = 1;}
             if ($dat_tmpc == -9999) { $AFU = 1;}
             if ($dat_relh == -9999) { $AFU = 1;}
             if ($dat_pres == -9999) { $AFU = 1;}
@@ -235,7 +247,7 @@ if( open(F1, "$source_file") ) {
 
             ##
             # Save to output file.  Initially we need to see if this is the
-            # first iteration of the program.  If so, we have enough
+            # first itteration of the program.  If so, we have enough
             # information now to generate the filename.  Once we do this, we
             # can store our Profile data to the CSV output file.
             #
@@ -252,20 +264,20 @@ if( open(F1, "$source_file") ) {
                 if (! -e "$output_file") {
                     # Print CSV header to file
                     open (F2, ">$output_file");
-                    print F2 ("#IDX, UNIX-TIME, SYS-NSAT, SYS-VOLT, ".
-                              "GEO-LAT, GEO-LON, GEO-ELEV, ".
-                              "DAT-TMPC, DAT-RH, DAT-PRES\n");
+                    print F2 ("# IDX, UNIX-TIME, SYS-NSAT, SYS-VOLT, ".
+                              "GEO-LAT, GEO-LON, GEO-ELEV, GEO-ANG, ".
+                              "DAT-SPD, DAT-TMPC, DAT-RH, DAT-PRES\n");
                     close(F2);
                 } else {
                     # Print data to file. This assumes we have a header
                     # WARNING: This could be a source of file I/O failures.
                     open (F2,">>$output_file");
                     printf F2 (
-                        "%04d,%010d,%02d,%05.2f,%010d,%010d,%05d,".
+                        "%04d,%010d,%02d,%05.2f,%010d,%010d,%05d,%06.2f,%06.2f,".
                         "%06.2f,%06.2f,%06d\n",
                         $nline, $time_shift, $sys_nsat, $sys_volt,
-                        $geo_lat, $geo_lon, $geo_elev,
-                        $dat_tmpc, $dat_relh, $dat_pres);
+                        $geo_lat, $geo_lon, $geo_elev, $geo_ang,
+                        $dat_spd, $dat_tmpc, $dat_relh, $dat_pres);
                     close(F2);
                 }
             }
