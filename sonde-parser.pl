@@ -8,6 +8,8 @@ use Getopt::Long qw(GetOptions);
 #
 # 'Cup-Sonde' Data parser
 #
+# Version: 1.0.1
+#
 # Usage:
 #   perl sonde-parser.pl
 #       --file=<filename>
@@ -31,12 +33,6 @@ use Getopt::Long qw(GetOptions);
 #
 #******************************************************************************#
 
-
-##
-# TODO: Add pressure corrections from elevation
-# TODO: Add direction/bearing support?
-# TODO: Add dew point calculation?
-#
 
 #******************************************************************************#
 #
