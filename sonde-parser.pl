@@ -3,7 +3,6 @@ use strict;                         # Include all types
 use warnings;
 use Getopt::Long qw(GetOptions);
 
-
 #******************************************************************************#
 #
 # 'Cup-Sonde' Data parser
